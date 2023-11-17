@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import '../styles/App.css';
 const App = () => {
-  const [selectedShape,setSelectedShape]=useState('Square');
+  const [selectedShape,setSelectedShape]=useState('square');
   const [shapes,setShapes]=useState([]);
 
   const handleShapeChange=(Event)=>{
@@ -9,27 +9,23 @@ const App = () => {
   };
 
   const handleAddShape=()=>{
-    const id=new Date().getTime();
-    const newShape={
-      id,type:selectedShape,
-    }
-    setShapes([...shapes,newShape]);
+    setShapes([...shapes,selectedShape]);
   }
 
   return (
     <div id="main">
       <div id="shape-creator">
         <select value={selectedShape} onChange={handleShapeChange}>
-          <Option value={Square}>Square</Option>
-          <Option value={Circle}>Circle</Option>
+          <Option value="square">Square</Option>
+          <Option value="circle">Circle</Option>
         </select>
         <button onClick={handleAddShape}>Add Shape</button>
       </div>
 
       <div id="shapes-holder">
-        {shapes.map((shape)=>{
-          <div key={shape.id} className={shape.type.toLowerCase()}>
-            {shape.type} {shape.id}
+        {shapes.map((shape,index)=>{
+          <div className={shape}>
+            {index}
           </div>
         })}
       </div>
