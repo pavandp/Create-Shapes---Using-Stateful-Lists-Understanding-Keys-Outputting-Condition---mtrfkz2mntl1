@@ -1,33 +1,27 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import '../styles/App.css';
 const App = () => {
-  const [selectedShape,setSelectedShape]=useState('square');
-  const [shapes,setShapes]=useState([]);
+const [shape , setShape] = useState([]);
+const [shapeVal , setShapeVal] = useState('square');
+const handleSelect = (e) =>{
+  setShapeVal(e.target.value);
+}
+const shapeChange = () =>{
 
-  const handleShapeChange=(Event)=>{
-    setSelectedShape(Event.target.value);
-  };
-
-  const handleAddShape=()=>{
-    setShapes([...shapes,selectedShape]);
-  }
+  setShape([...shape ,shapeVal]);
+}
 
   return (
     <div id="main">
       <div id="shape-creator">
-        <select value={selectedShape} onChange={handleShapeChange}>
-          <Option value="square">Square</Option>
-          <Option value="circle">Circle</Option>
+        <select value={shapeVal} onChange={handleSelect} >
+          <option value='square'>Square</option>
+          <option value='circle'>Circle</option>
         </select>
-        <button onClick={handleAddShape}>Add Shape</button>
+        <button onClick={shapeChange} >Add Shapes</button>
       </div>
-
       <div id="shapes-holder">
-        {shapes.map((shape,index)=>{
-          <div className={shape}>
-            {index}
-          </div>
-        })}
+        {shape.map((item,index) => <div className={item}>{index}</div>)}
       </div>
     </div>
   )
